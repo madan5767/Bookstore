@@ -25,9 +25,8 @@ public class Book implements Serializable {
     private double averageRatings;
     @Column(columnDefinition = "integer default 0")
     private int nbRatings;
-    private int id_owner;
     @Column(columnDefinition = "varchar(500) default 'No description provided for this Book'")
-    private String desciption;
+    private String description;
     @Column(columnDefinition = "varchar(3000) default 'C:\timage\tpanda.jpg'")
     private String cover;
     private boolean archived;
@@ -43,13 +42,13 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(String isbn, String title, String author, float price,String cover, String desciption) {
+    public Book(String isbn, String title, String author, float price,String cover, String description) {
         this.isbn = isbn;
         this.title = title;
         Author = author;
         this.price = price;
         this.cover = cover;
-        this.desciption = desciption;
+        this.description = description;
         archived=false;
     }
     
@@ -62,14 +61,13 @@ public class Book implements Serializable {
 		this.price = price;
 	}
 
-	public Book(String isbn, String title, String author, float price, int id_owner, String cover, String desciption, Collection<Category> categories) {
+	public Book(String isbn, String title, String author, float price, String cover, String description, Collection<Category> categories) {
         this.isbn = isbn;
         this.title = title;
         Author = author;
         this.price = price;
-        this.id_owner = id_owner;
         this.cover = cover;
-        this.desciption = desciption;
+        this.description = description;
         this.categories = categories;
         archived=false;
 
@@ -139,17 +137,13 @@ public class Book implements Serializable {
         this.cover = cover;
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public int getId_owner() {return id_owner;}
-
-    public void setId_owner(int id_owner) {this.id_owner = id_owner;}
 
     public Collection<Category> getCategories() {return categories;}
 
