@@ -35,14 +35,11 @@ public class Book implements Serializable {
     private boolean archived;
     @ManyToMany(cascade = CascadeType.ALL)
     private Collection<Category> categories;
-//    @JsonIgnore
-//    @OneToMany( mappedBy="book" )
-//    private List<Resource> resources = new ArrayList<>();
 
     @OneToOne(mappedBy = "book")
     private ArchiveBook archiveBook;
 
-    @OneToMany
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
     public Book() {
