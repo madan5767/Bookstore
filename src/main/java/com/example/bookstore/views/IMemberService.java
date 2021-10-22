@@ -1,7 +1,9 @@
 //package com.example.bookstore.views;
 //
 //
+//import com.example.bookstore.models.Book;
 //import com.example.bookstore.models.Member;
+//import com.example.bookstore.models.Review;
 //import org.springframework.security.core.GrantedAuthority;
 //
 //import java.util.Collection;
@@ -16,4 +18,5 @@
 //    List<Member> retrieveMemberByRole(String role);
 //
 //    Collection<? extends GrantedAuthority> getAuthorities();
+//    Book addReviewToBook(Review review, String isbn);
 //}

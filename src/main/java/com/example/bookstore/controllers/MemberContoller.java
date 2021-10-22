@@ -1,14 +1,21 @@
 //package com.example.bookstore.controllers;
 //
+//import com.example.bookstore.models.Book;
+//import com.example.bookstore.models.Review;
+//import com.example.bookstore.views.IBookService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.validation.BindingResult;
 //import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RestController;
 //
+//import javax.validation.Valid;
 //import java.util.ArrayList;
 //import java.util.List;
 //
@@ -49,5 +56,15 @@
 //        }
 //    }*/
 //
+//    @PostMapping("/review")
+//    public ResponseEntity<Book> addReviewToPerfume(@Valid @RequestBody Review review,
+//                                                   BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            throw new InputFieldException(bindingResult);
+//        } else {
+//            Book book = IBookService.addReviewToBook(review, review.getId());
+//            return ResponseEntity.ok(book);
+//        }
+//    }
 //
 //}

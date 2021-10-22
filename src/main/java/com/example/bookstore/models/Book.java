@@ -5,9 +5,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Book implements Serializable {
@@ -27,8 +29,9 @@ public class Book implements Serializable {
     private int nbRatings;
     @Column(columnDefinition = "varchar(500) default 'No description provided for this Book'")
     private String description;
-    @Column(columnDefinition = "varchar(3000) default 'C:\timage\tpanda.jpg'")
+    @Column(columnDefinition = "varchar(3000) default 'C:\timage\tharrypotter.jpg'")
     private String cover;
+    private int quantity;
     private boolean archived;
     @ManyToMany(cascade = CascadeType.ALL)
     private Collection<Category> categories;
@@ -38,6 +41,9 @@ public class Book implements Serializable {
 
     @OneToOne(mappedBy = "book")
     private ArchiveBook archiveBook;
+
+    @OneToMany
+    private List<Review> reviews;
 
     public Book() {
     }

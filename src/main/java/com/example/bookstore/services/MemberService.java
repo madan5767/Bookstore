@@ -1,12 +1,15 @@
 //package com.example.bookstore.services;
 //
 //import com.example.bookstore.dao.MemberRepository;
+//import com.example.bookstore.models.Book;
 //import com.example.bookstore.models.Member;
+//import com.example.bookstore.models.Review;
 //import com.example.bookstore.views.IMemberService;
 //import com.example.bookstore.views.IRoleService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
 //
+//import java.util.List;
 //import java.util.Objects;
 //
 //@Service
@@ -169,4 +172,16 @@
 //
 //        return MemberService.build(user);
 //    }
+//    @Override
+//    public Book addReviewToBook(Review review, String isbn) {
+//        Book book = bookRepository.getOne(isbn);
+//        List<Review> reviews = book.getReviews();
+//        reviews.add(review);
+//        double totalReviews = reviews.size();
+//        double sumRating = reviews.stream().mapToInt(Review::getRating).sum();
+//        book.setBookRating(sumRating / totalReviews);
+//        reviewRepository.save(review);
+//        return book;
+//    }
 //}
+//
