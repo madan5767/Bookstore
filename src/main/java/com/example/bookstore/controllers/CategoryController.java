@@ -36,7 +36,7 @@ public class CategoryController {
     public ResponseEntity<Category> addCategory(@Valid @RequestBody Category category) throws URISyntaxException {
 
             Category result = categoryService.addCategory(category);
-            return ResponseEntity.created(new URI("/newCategory" + result.getId())).body(result);
+            return ResponseEntity.created(new URI("/newCategory" + result.getCategoryId())).body(result);
         }
 
     @PutMapping("/updateCategory/{id}")

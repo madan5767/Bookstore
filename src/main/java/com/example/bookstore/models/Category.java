@@ -1,6 +1,9 @@
 package com.example.bookstore.models;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +16,15 @@ import java.util.Collection;
 
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long categoryId;
     private String name;
     @Column(columnDefinition = "varchar(10000) default 'No Description provided for this category'")
     private String description;
@@ -27,41 +32,4 @@ public class Category implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     private Collection<Book> books;
 
-    public Category(String name, String description) {
-        this.name=name;
-        this.description=description;
-    }
-
-    public Category() {
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

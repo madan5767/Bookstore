@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    private Long reviewId;
     private String author;
     private String message;
     private Integer rating;

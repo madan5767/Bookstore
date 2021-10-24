@@ -28,7 +28,7 @@ public class CartService implements ICartService {
 	}
     
     public Cart updating(Cart c) {
-  		if(cartRep.findById(c.getId())!=null) {
+  		if(cartRep.findById(c.getCartId())!=null) {
   			
   		return cartRep.save(c);
   		}

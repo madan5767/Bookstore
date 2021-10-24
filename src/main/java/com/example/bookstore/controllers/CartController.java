@@ -41,7 +41,7 @@ public class CartController {
 	//Modifier
 	@PutMapping(path="/modifie/{id}")
 	public Cart update(@PathVariable(name="id")long id, @RequestBody Cart c) {
-		c.setId(id);
+		c.setCartId(id);
 		return cartService.saveCart(c);
 	}
 	//EmptyCart

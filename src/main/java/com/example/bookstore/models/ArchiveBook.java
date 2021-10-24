@@ -1,5 +1,8 @@
 package com.example.bookstore.models;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,38 +14,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class ArchiveBook {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long archiveId;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Book book;
-
-
-    private Date deletion_date;
-
-    public ArchiveBook() {
-    }
+    private Date deletionDate;
 
     public ArchiveBook(Book book) {
         this.book= book;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
-        this.deletion_date = date;
-        formatter.format(this.deletion_date);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-
-    public Date getDeletion_date() {
-        return deletion_date;
-    }
-
-    public void setDeletion_date(Date deletion_date) {
-        this.deletion_date = deletion_date;
+        this.deletionDate = date;
+        formatter.format(this.deletionDate);
     }
 }

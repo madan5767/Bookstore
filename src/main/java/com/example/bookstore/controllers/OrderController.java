@@ -30,7 +30,7 @@ public class OrderController {
     @PostMapping("/newOrder")
     public ResponseEntity<Orders> addOrder(@Valid @RequestBody Orders order) throws URISyntaxException {
         Orders result = orderService.addOrder(order);
-        return ResponseEntity.created(new URI("/newOrder" + result.getId())).body(result);
+        return ResponseEntity.created(new URI("/newOrder" + result.getOrderId())).body(result);
     }
 }
 

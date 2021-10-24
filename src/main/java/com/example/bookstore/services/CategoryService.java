@@ -82,7 +82,7 @@ public class CategoryService implements ICategoryService {
                .filter(c->c.getName().toUpperCase().contains(name.toUpperCase()))
                .collect(Collectors.toList());
        if (cat==null)
-           logger.warn("couldn't find any cayegories with the name: "+ name);
+           logger.warn("couldn't find any categories with the name: "+ name);
        else
            logger.info("retrieved categories: "+cat);
        return cat;

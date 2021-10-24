@@ -3,6 +3,7 @@
 import com.example.bookstore.models.ArchiveBook;
 import com.example.bookstore.models.Book;
 import com.example.bookstore.views.IBookService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collection;
@@ -34,17 +38,23 @@ import java.util.List;
       }
 
 
-     @PostMapping("/newBook")
-     public ResponseEntity<Book> addBook(@Valid @RequestBody Book book) throws URISyntaxException {
-         Book result = bookService.addBook(book);
-         return ResponseEntity.created(new URI("/newBook" + result.getIsbn())).body(result);
+//     @PostMapping("/newBook")
+//     public ResponseEntity<Book> addBook(@Valid @RequestBody Book book) throws URISyntaxException {
+//         Book result = bookService.addBook(book);
+//         return ResponseEntity.created(new URI("/newBook" + result.getIsbn())).body(result);
+//     }
+
+     @PostMapping(value = "/newBook", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+     public Book addBook(@RequestParam("book") String book, @RequestParam("file") MultipartFile file) throws IOException {
+         Book saveBook = new ObjectMapper().readValue(book, Book.class);
+         return bookService.addBook(saveBook, file);
      }
 
 
      @PostMapping("/ArchiveBook/{id}")
      public ResponseEntity<ArchiveBook> archiveBook(@Valid @PathVariable(name="id") String id) throws URISyntaxException {
               ArchiveBook result= bookService.archiveBook(id);
-              return ResponseEntity.created(new URI("/archivedBook" + result.getId())).body(result);
+              return ResponseEntity.created(new URI("/archivedBook" + result.getArchiveId())).body(result);
           }
 
 

@@ -2,6 +2,7 @@ package com.example.bookstore.models;
 
 import com.example.bookstore.enums.EOrder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,11 +19,12 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "Orders")
 public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long orderId;
     private Date orderDate;
     private String shippingAddress;
     @Enumerated(EnumType.STRING)

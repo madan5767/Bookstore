@@ -9,8 +9,17 @@ import com.example.bookstore.views.IBookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,10 +45,23 @@ public class BookService implements IBookService {
         return books;
     }
 
+//    @Override
+//    public Book addBook(Book book) {
+//    bookRepository.save(book);
+//         return book;
+//    }
     @Override
-    public Book addBook(Book book) {
-    bookRepository.save(book);
-         return book;
+    public Book addBook(Book book, MultipartFile file) throws IOException {
+
+        File saveFile = new ClassPathResource("static/bookimg").getFile();
+        Path path = Paths.get(saveFile.getAbsolutePath() + File.separator+file.getOriginalFilename());
+
+        Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+        book.setCover(file.getOriginalFilename());
+        Book savedBook = bookRepository.save(book);
+        savedBook.setCover(ServletUriComponentsBuilder.fromCurrentContextPath().path("/bookimg/").path(savedBook.getCover()).toUriString());
+        return savedBook;
     }
 
     @Override
