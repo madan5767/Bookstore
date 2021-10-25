@@ -1,0 +1,23 @@
+.someProducts-main-container{
+    width: 100%;
+    margin: 25px;
+    padding: 25px;
+
+}
+
+.someProducts-h1{
+    font-family: cursive;
+  
+}
+
+.someProducts-hr{
+ text-align: center;
+}
+
+.some-card{
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr
+   
+}

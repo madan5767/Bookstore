@@ -1,0 +1,13 @@
+.category-heading{
+    text-align: center;
+    text-decoration: solid underline;
+}
+
+.category-mainContainer{
+    text-align: center;
+}
+
+.category-subContainer{
+    padding: 25px;
+    margin: 25px;
+}

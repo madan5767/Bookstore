@@ -1,0 +1,25 @@
+.nav-link{
+    color: white !important;
+    margin-left: 70px;
+}
+.form-control{
+    width: 300px;
+}
+.btn{
+    width: 100px;
+    border-color: white;
+    color: white;
+}
+.btn:hover{
+    color: black;
+    background-color: rgb(6, 172, 14);
+}
+.bi{
+  margin-right: 10px;
+ 
+}
+
+.navbar-title{
+    color: green;
+    padding: 10px;
+}
