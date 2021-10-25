@@ -43,7 +43,7 @@ public class CategoryController {
     public ResponseEntity<?> updateCategory(@Valid @RequestBody Category newCategory, @PathVariable("id") String id) {
         try {
             Category category = categoryService.retrieveCategoryById(id);
-            category.setName(newCategory.getName());
+            category.setCategoryName(newCategory.getCategoryName());
             category.setDescription(newCategory.getDescription());
             Category result = categoryService.addCategory(category);
             return ResponseEntity.ok().body(result);
@@ -73,10 +73,8 @@ public class CategoryController {
             return ResponseEntity.ok().body(categories);
         }
         catch (Exception ex) {
-            return ResponseEntity.badRequest().body("Error while retrieveing categories with name :" +name);
+            return ResponseEntity.badRequest().body("Error while retrieving categories with name :" +name);
         }
     }
-
-
 
 }

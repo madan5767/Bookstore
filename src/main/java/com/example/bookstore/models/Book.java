@@ -55,7 +55,6 @@ public class Book implements Serializable {
         this.description = description;
         archived=false;
     }
-    
 
     public Book(String isbn, String title, String author, float price) {
 		this.isbn = isbn;

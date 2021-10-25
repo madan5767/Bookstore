@@ -22,24 +22,19 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 
-	@GetMapping
-	public List<Cart> carts(){
-		return cartService.getCarts();	
-	}
-	
-	@GetMapping("/")
+	@GetMapping("/getAll")
 	public List<Cart>getCarts(){
 		return cartService.getCarts();	
 	}
 
 	//Insert
 	@PostMapping(value="/add" ,produces = MediaType.APPLICATION_JSON_VALUE)
-	public Cart creerCart(@RequestBody Cart c) {
+	public Cart createCart(@RequestBody Cart c) {
 		return cartService.saveCart(c);
 
 	}
 	//Modifier
-	@PutMapping(path="/modifie/{id}")
+	@PutMapping(path="/update/{id}")
 	public Cart update(@PathVariable(name="id")long id, @RequestBody Cart c) {
 		c.setCartId(id);
 		return cartService.saveCart(c);
@@ -50,7 +45,7 @@ public class CartController {
 		return cartService.empty(id);
 	}
 
-	//Supprimer
+	//Delete cart
 	@DeleteMapping(path="/delete/{id}")
 	public boolean delete(@PathVariable(name="id") long id) {
 		cartService.deleting(id);
@@ -70,8 +65,8 @@ public class CartController {
 	}
 
 	@DeleteMapping(path="/deleteAll")
-	public boolean deleteEvreything() {
-		cartService.deleteEvreything();
+	public boolean deleteEverything() {
+		cartService.deleteEverything();
 		return true;
 	}
 

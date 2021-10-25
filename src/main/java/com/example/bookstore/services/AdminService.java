@@ -42,12 +42,10 @@ public class AdminService {
         else{
             return new ResponseObject(0, "Invalid email or password!");
         }
-
     }
 
     public String deleteAdminById(long id){
         adminRepo.deleteById(id);
         return "Admin ID: "+id+" is deleted";
     }
-
 }

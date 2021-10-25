@@ -33,7 +33,7 @@ public class CategoryService implements ICategoryService {
         TreeMap<String, String>  treemap= new TreeMap<String,String>((c1,c2)->c1.compareTo(c2));
         for (Category category: retrieveAllCategories())
         {
-            treemap.put(category.getName(), category.getDescription());
+            treemap.put(category.getCategoryName(), category.getDescription());
         }
         logger.info("retrieved list of categories"+treemap);
         return treemap;
@@ -41,15 +41,14 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Category addCategory(Category category) {
-        if ((RegexTests.isAvalidCategory(category.getName()))) {
+        if ((RegexTests.isAvalidCategory(category.getCategoryName()))) {
             logger.info("Adding Category " + category);
             return categoryRepository.save(category);
         }
         else
         {
-           logger.warn("Invalid category name: " + category.getName());
+           logger.warn("Invalid category name: " + category.getCategoryName());
             return null;
-
         }
 
     }
@@ -63,7 +62,6 @@ public class CategoryService implements ICategoryService {
     @Override
     public Category updateCategory(Category u) {
         return null;
-
     }
 
     @Override
@@ -79,7 +77,7 @@ public class CategoryService implements ICategoryService {
     public List<Category> retrieveCategoryByName(String name) {
 
        List<Category> cat = this.retrieveAllCategories().stream()
-               .filter(c->c.getName().toUpperCase().contains(name.toUpperCase()))
+               .filter(c->c.getCategoryName().toUpperCase().contains(name.toUpperCase()))
                .collect(Collectors.toList());
        if (cat==null)
            logger.warn("couldn't find any categories with the name: "+ name);
@@ -92,7 +90,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public boolean categoryNameDoesntExist(String name) {
         return this.retrieveAllCategories().stream()
-                .map(c->c.getName().toUpperCase())
+                .map(c->c.getCategoryName().toUpperCase())
                 .noneMatch(c->c.equals(name.toUpperCase()));
     }
 

@@ -64,7 +64,7 @@ public class CartService implements ICartService {
     public void deleting(long id) {
 		cartRep.deleteById(id);
 	}
-    public void  deleteEvreything() {
+    public void  deleteEverything() {
     	cartRep.deleteAll();
     }
 	public Cart removeFromCart(long cid, String isbn) {

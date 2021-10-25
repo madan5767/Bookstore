@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Data
 @Entity
@@ -36,10 +35,6 @@ public class Customer {
 
     @NotEmpty
     @Size(max = 8)
-            private String customerPassword;
-
-//            @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer",  fetch = FetchType.LAZY)
-//            @JsonManagedReference(value =  "customer-cart")
-//            private List<Cart> carts;
+    private String customerPassword;
 
 }
